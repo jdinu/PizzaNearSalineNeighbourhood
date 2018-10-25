@@ -27,8 +27,9 @@ class Helper {
 
   static headers(){
       return {
-          Accept : "application/json",         
-          'Content-Type': 'application/json'
+          Accept : "application/json"
+          //,         
+         // 'Content-Type': 'application/json'
       };
   }
 
@@ -38,7 +39,7 @@ class Helper {
        headers: Helper.headers()
        };
        return fetch(
-           `${Helper.baseURL()}{endPoint}?${Helper.auth()}&${Helper.urlBuilder(
+           `${Helper.baseURL()}${endPoint}?${Helper.auth()}&${Helper.urlBuilder(
                urlParams)}`,
               requestData 
        ).then(res => res.json());
