@@ -7,12 +7,12 @@ class Helper {
   //authentication
   static auth(){
       const keys = {
-        client_id : "UTVI3JAQJS1SMDAHARPWEFPQO3O33HX2KCMCHIT1JP4UYQQV",
-        client_secret : "ZQBMSWR03L4CVU4GD3PEXV4CA5MEP1SIHIOTUW0UUVA2BHYL",
-        v : "20181024"
-      };
+        client_id:'UTVI3JAQJS1SMDAHARPWEFPQO3O33HX2KCMCHIT1JP4UYQQV',             
+        client_secret:'ZQBMSWR03L4CVU4GD3PEXV4CA5MEP1SIHIOTUW0UUVA2BHYL',
+        v:'20181025'
+      };      
       return Object.keys(keys)
-      .map(key => `${key} = ${keys[key]}`)
+      .map(key => `${key}=${keys[key]}`)
       .join("&");      
   }
    //URL Builder
@@ -21,31 +21,27 @@ class Helper {
           return "";
       }
       return Object.keys(urlParams)
-      .map(key => `${key} = ${urlParams[key]}`)
-      .join("&"); 
+      .map(key => `${key}=${urlParams[key]}`)
+      .join("&");       
   }
 
   static headers(){
       return {
           Accept : "application/json"
-          //,         
-         // 'Content-Type': 'application/json'
-      };
+             };
   }
 
-  static simpleFetch(endPoint,method,urlParams){
-   let requestData = {
-       method,
-       headers: Helper.headers()
-       };
-       return fetch(
-           `${Helper.baseURL()}${endPoint}?${Helper.auth()}&${Helper.urlBuilder(
-               urlParams)}`,
-              requestData 
-       ).then(res => res.json());
-  }
-}
-
+static simpleFetch(endPoint,method,urlParams){
+    let requestData = {
+        method,
+        headers: Helper.headers()
+        };
+        return fetch(
+            `${Helper.baseURL()}${endPoint}?${Helper.auth()}&${Helper.urlBuilder(urlParams)}`,
+               requestData 
+        ).then(res => res.json());
+   }
+ }
 export default class SquareAPI {
     static search(urlParams) {
         return Helper.simpleFetch("/venues/search", "GET",urlParams);

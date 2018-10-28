@@ -7,10 +7,10 @@ import SquareAPI from "./API/"
 class App extends Component {
 componentDidMount(){
   SquareAPI.search({
-      near : "Austin,TX",
-      query: "tacos",
-      limit :10
-      }).then(
+    near : "Austin,TX",
+    query: "tacos",
+    limit : 10   
+  }).then(
         results => console.log(results));
       }
   render() {
