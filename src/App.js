@@ -5,18 +5,42 @@ import SquareAPI from "./API/"
 
 
 class App extends Component {
+    // State
+    constructor(){
+      super()
+      this.state = {
+        venues: [],
+        markers: [],
+        center: [],
+        zoom: 12
+      };
+    }
+// Deconstruct the results in the promise
 componentDidMount(){
   SquareAPI.search({
     near : "Austin,TX",
     query: "tacos",
     limit : 10   
   }).then(
-        results => console.log(results));
+        results => {
+        const { venues } = results.response;
+        const { center } = results.response.geocode.feature.geometry;
+        const markers = venues.map(venue => {
+          return {
+            lat: venue.location.lat,
+            lng: venue.location.lng,
+            isOpen:false,
+            isVisible:true
+          };
+        });
+this.setState({ venues, center, markers });
+console.log(results);
+        })
       }
   render() {
     return (
-      <div className="App">
-        <Map />
+      <div className="App">      
+        <Map {...this.state}/>
       </div>
     );
   }
