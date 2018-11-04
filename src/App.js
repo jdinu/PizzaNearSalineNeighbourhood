@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import Map from "./component/Map"
-import SquareAPI from "./API/"
+import Map from "./component/Map";
+import SquareAPI from "./API/";
+import SideBar from "./component/SideBar";
+
 
 
 class App extends Component {
@@ -27,8 +29,14 @@ handleMarkerClick =(marker) => {
     const newVenue = Object.assign(venue, res.response.venue);
     this.setState({ venues: Object.assign(this.state.venues, newVenue) });
     console.log(newVenue);
-  });
+  } );
 };
+
+listItemClickAction = venue => {
+  const marker = this.state.markers.find(marker => marker.id === venue.id);
+  this.handleMarkerClick(marker);
+  //console.log(venue); 
+}
 
 closeAllMarkers = ()=>{
  const markers = this.state.markers.map(marker => {
@@ -63,7 +71,10 @@ console.log(results);
       }
   render() {
     return (
-      <div className="App">      
+      <div className="App"> 
+          <SideBar{...this.state}  
+          listItemClickAction = {this.listItemClickAction}
+          />
         <Map {...this.state}
         handleMarkerClick ={this.handleMarkerClick}
         />

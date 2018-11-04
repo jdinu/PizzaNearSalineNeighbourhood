@@ -1,6 +1,39 @@
+/* Using flexbox to display the left navigation bar*/
 .App {
   text-align: center;
+  height:100vh;
+  width:100vw;
+  display: flex;
+  flex-flow: nowrap;
+  
 }
+.sideBar{
+  width:25%;  
+    }
+
+  #searchBar{
+    width : 100%;
+    height: 2rem;
+    font-size : 1rem;   
+  }
+
+.venueList {
+  padding: 1rem;
+}
+.listItem {
+  list-style-type: none;
+  font-size: 1 rem;
+  padding :.25rem;
+  margin-top: 1rem;
+  box-shadow: 1px 1px 1px rgb(218, 209, 209);
+  cursor: pointer;
+  background: #74c8df;
+  color: #FFFFFF;
+  display: flex;
+  align-items:center;
+
+}
+
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;

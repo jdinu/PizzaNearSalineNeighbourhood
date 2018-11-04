@@ -13,9 +13,17 @@ const MyMapComponent = withScriptjs(
     <GoogleMap
     defaultZoom={8} 
     zoom ={props.zoom}
-    defaultCenter ={{ lat: -34.397,lng: 150.664 }}
-    center={props.center}   
+    defaultCenter ={{ lat: -34.397,lng: 150.664 }}   
+    center={props.center}  
+   /* center={{
+      lat: parseFloat(props.center.lat),
+      lng: parseFloat(props.center.lng)
+  }}*/
     > 
+   
+
+
+
     {props.markers &&
       props.markers
         .filter(marker => marker.isVisible)
@@ -29,8 +37,8 @@ const MyMapComponent = withScriptjs(
            venueInfo.bestPhoto && (
            <InfoWindow>
              <React.Fragment>
-               <img src ={`${venueInfo.bestPhoto.prefix}200*200${venueInfo.bestPhoto.suffix}`}
-               alt ={"Venue Image"}/>
+               <img src ={`${venueInfo.bestPhoto.prefix}${10*10}${venueInfo.bestPhoto.suffix}`}
+               alt ={"Venue Image"}/>               
             <p>{venueInfo.name}</p>
             <p>{venueInfo.location.address}</p>
             </React.Fragment>
@@ -51,7 +59,7 @@ export default class Map extends Component {
         {...this.props}
         googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCJXdLcL4o2-2KmAkYWPskqHsIxL4Cu5Uw"
         loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `400px` }} />}
+        containerElement={<div style={{ height: `100%`, width :`75%` }} />}
         mapElement={<div style={{ height: `100%` }} />}
       />
       )
