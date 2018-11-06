@@ -1,3 +1,4 @@
+/* global google */
 import React, { Component } from "react";
 
 import {
@@ -17,21 +18,22 @@ const MyMapComponent = withScriptjs(
     center={{
       lat: parseFloat(props.center.lat),
       lng: parseFloat(props.center.lng)
-  }}
-    
+  }}    
     > 
    
-
-
-
     {props.markers &&
       props.markers
         .filter(marker => marker.isVisible)
-        .map((marker,idx)=>{
+        .map((marker,idx,arr)=>{
         const venueInfo = props.venues.find(venue => venue.id === marker.id);
           return(    
           <Marker key={idx} position={{ lat: marker.lat, lng : marker.lng }}
            onClick={()=> props.handleMarkerClick(marker)}
+           animation={
+             arr.length === 1
+              ? google.maps.Animation.BOUNCE
+              : google.maps.Animation.DROP
+             }
           >
           {marker.isOpen &&
            venueInfo.bestPhoto && (
