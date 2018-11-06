@@ -12,6 +12,19 @@ export default class SideBar extends Component {
        };
    }
 
+//event handler on filter list items
+handleFilterVenues = () => {
+    if (this.state.query.trim !== ""){
+        const venues = this.props.venues.filter(venue => venue.name
+              .toLowerCase()
+            .includes(this.state.query.toLocaleLowerCase())
+        );
+        console.log(venues);
+        return venues;
+    }
+    return this.props.venues;    
+};
+
 // event handler for the change in filter to show only the marker that matches with the venue
       handleChange = e => {
           this.setState({ query: e.target.value });
@@ -37,7 +50,8 @@ export default class SideBar extends Component {
                     placeholder="Filter your search here..."
                     onChange={this.handleChange} />
             <VenueList
-             {...this.props}          
+             {...this.props} 
+             venues = {this.handleFilterVenues()}         
             listItemClickAction ={this.props.listItemClickAction}/>
             </div>
         )
