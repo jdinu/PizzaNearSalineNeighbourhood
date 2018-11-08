@@ -21,13 +21,13 @@ class App extends Component {
       };
     }
 
+// Event handler for the click action in the marker
 handleMarkerClick =(marker) => {
   this.closeAllMarkers();
   //console.log(marker);
   marker.isOpen = true;
   this.setState({markers: Object.assign(this.state.markers,marker)});
   const venue = this.state.venues.find(venue => venue.id === marker.id);
-  //console.log(venue, "SINGLE VENUE");
   SquareAPI.venuedetails(marker.id).then(res => {
     const newVenue = Object.assign(venue, res.response.venue);
     this.setState({ venues: Object.assign(this.state.venues, newVenue) });
@@ -35,6 +35,7 @@ handleMarkerClick =(marker) => {
   } );
 };
 
+//Event handler for the click action in the venue list
 listItemClickAction = venue => {
   const marker = this.state.markers.find(marker => marker.id === venue.id);
   this.handleMarkerClick(marker);
@@ -49,12 +50,19 @@ closeAllMarkers = ()=>{
  this.setState({markers: Object.assign(this.state.markers, markers)});
 }
 
+
 // Deconstruct the results in the promise
 componentDidMount(){
+// error handling for google map errors
+  window.gm_authFailure = () => {
+    alert('ERROR!! \nFailed to get Google map.');
+    console.log('ERROR!! \nFailed to get Google map.');
+ }
   SquareAPI.search({
-    near : "Austin,TX",
-    query: "tacos",
-    limit : 10   
+    near : "Saline,MI",
+    query: "Pizza",
+    limit : 10,
+    radius :2000  
   }).then(
         results => {
         const { venues } = results.response;
@@ -72,6 +80,9 @@ this.setState({ venues, center, markers });
 console.log(results);
         })
       }
+
+
+     
   render() {
     return (
       <div className="App"> 

@@ -9,6 +9,7 @@ import {
      InfoWindow
      } from "react-google-maps";
 
+       
 const MyMapComponent = withScriptjs(
   withGoogleMap((props => (
     <GoogleMap
@@ -39,10 +40,24 @@ const MyMapComponent = withScriptjs(
            venueInfo.bestPhoto && (
            <InfoWindow>
              <React.Fragment>
-               <img src ={`${venueInfo.bestPhoto.prefix}${10*10}${venueInfo.bestPhoto.suffix}`}
-               alt ={"Venue Image"}/>               
-            <p>{venueInfo.name}</p>
-            <p>{venueInfo.location.address}</p>
+               { <img src ={`${venueInfo.bestPhoto.prefix}${10*10}${venueInfo.bestPhoto.suffix}`}
+               alt ={"Venue Image"}/>            }
+            <p>
+              <strong>Name: </strong>
+              {venueInfo.name}
+            </p>
+            <p>
+              <strong>Address: </strong>
+              {venueInfo.location.formattedAddress}
+            </p>
+            {<p>
+              <strong>Price: </strong>
+              {venueInfo.price.message}
+            </p> }
+            <p>
+              <strong>Phone: </strong>
+              {venueInfo.contact.formattedPhone}
+            </p>         
             </React.Fragment>
             </InfoWindow>
         )}
