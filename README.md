@@ -22,11 +22,12 @@ Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
 ## How to Run 
-- use the command npn run start to start the server.This will launch the site in the local host server
+- use the command npm start  run to start the server.This will launch the site in the local host server
 
 ## Technologies
 - `create-react-app` is a global command-line utility that you use to create new projects.
 - `react-scripts` is a development dependency in the generated projects (including this one).
+-`react-google-maps`
 
 ## Folder Structure
 

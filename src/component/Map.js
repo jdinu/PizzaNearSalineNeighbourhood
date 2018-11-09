@@ -72,12 +72,12 @@ const MyMapComponent = withScriptjs(
 export default class Map extends Component {
     render(){
       return (
-        <MyMapComponent        
+        <MyMapComponent    
         {...this.props}
         googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCJXdLcL4o2-2KmAkYWPskqHsIxL4Cu5Uw"
         loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `100%`, width :`75%` }} />}
-        mapElement={<div style={{ height: `100%` }} />}
+        containerElement={<div className ="mapcontainer" area-label ="map container"style={{ height: `100%`, width :`75%` }} />}
+        mapElement={<div id="map" area-label ="map" style={{ height: `100%` }} />}
       />
       )
     }

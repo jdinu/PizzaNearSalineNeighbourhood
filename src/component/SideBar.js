@@ -45,8 +45,8 @@ handleFilterVenues = () => {
 
     render(){
         return(
-            <div className ="sideBar">
-               <input type ="search" id ="searchBar" 
+            <div className ="sideBar" id ="sideBar" >
+               <input type ="search" id ="searchBar" aria-label='search Bar' tabIndex='0' 
                     placeholder="Filter your search here..."
                     onChange={this.handleChange} />
             <VenueList

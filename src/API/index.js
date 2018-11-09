@@ -25,12 +25,13 @@ class Helper {
       .join("&");       
   }
 
+
   static headers(){
       return {
           Accept : "application/json"
              };
   }
-
+// returning the response from fourSquare API
 static simpleFetch(endPoint,method,urlParams){
     let requestData = {
         method,
@@ -42,6 +43,7 @@ static simpleFetch(endPoint,method,urlParams){
         ).then(res => res.json());
    }
  }
+ 
 export default class SquareAPI {
     static search(urlParams) {
         return Helper.simpleFetch("/venues/search", "GET",urlParams);
